@@ -1,0 +1,5 @@
+numpy==1.19.1
+Pillow==7.2.0
+pydub==0.24.1
+six==1.15.0
+wxPython==4.1.0
