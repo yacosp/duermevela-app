@@ -4,85 +4,88 @@ duermevela-app main script
 duermevela-app is a clock display and field recording player
 for "duermevela", a chamber suite by Santiago Peresón [yaco].
 """
-import os
-import wx
+
+import kivy
+import time
+
+from kivy.app import App
+from kivy.clock import Clock
+from kivy.core.window import Window
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+
+kivy.require('2.0.0')
 
 
-g_app_path = os.path.dirname(os.path.abspath(__file__))
+class DuermevelaApp(App):
 
+    def __init__(self, **kwargs):
 
-class DuermevelaPanel(wx.Panel):
+        super().__init__(**kwargs)
 
-    def __init__(self, parent):
+        self.started = time.time()
+        self.mov_time = 0
+        self.tot_time = 0
 
-        # init panel
-        wx.Panel.__init__(self, parent)
+        self.box = None
+        self.top = None
+        self.mid = None
+        self.bot = None
 
-        # setup fonts
-        # wx.Font.AddPrivateFont(os.path.join(g_app_path, 'data/cardo/Cardo-Bold.ttf'))
-        # wx.Font.AddPrivateFont(os.path.join(g_app_path, 'data/cardo/Cardo-Italic.ttf'))
+    def build(self):
 
-        # setup static texts
-        top_text = wx.StaticText(self, -1, "uno", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_LEFT)
-        top_text.SetFont(
-            wx.Font(pointSize=100,
-                    family=wx.FONTFAMILY_ROMAN,
-                    style=wx.FONTSTYLE_ITALIC,
-                    weight=wx.FONTWEIGHT_NORMAL,
-                    faceName="Cardo Italic")
+        self.box = BoxLayout(orientation='vertical')
+
+        self.top = Label(
+            size_hint_y=1,
+            halign='left',
+            text="dos",
+            font_name=r'data/cardo/Cardo-Italic.ttf'
         )
-        top_text.SetForegroundColour('WHITE')
 
-        mid_text = wx.StaticText(self, -1, "4:37", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTRE_HORIZONTAL)
-        mid_text.SetFont(
-            wx.Font(pointSize=170,
-                    family=wx.FONTFAMILY_ROMAN,
-                    style=wx.FONTSTYLE_NORMAL,
-                    weight=wx.FONTWEIGHT_BOLD,
-                    faceName="Cardo Bold")
+        self.mid = Label(
+            size_hint_y=2,
+            halign='center',
+            text="3'17",
+            font_name=r'data/cardo/Cardo-Bold.ttf'
         )
-        mid_text.SetForegroundColour('WHITE')
 
-        bot_text = wx.StaticText(self, -1, "22:31", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_RIGHT)
-        bot_text.SetFont(
-            wx.Font(pointSize=100,
-                    family=wx.FONTFAMILY_ROMAN,
-                    style=wx.FONTSTYLE_NORMAL,
-                    weight=wx.FONTWEIGHT_BOLD,
-                    faceName="Cardo Bold")
+        self.bot = Label(
+            size_hint_y=1,
+            halign='right',
+            text="0'00",
+            font_name=r'data/cardo/Cardo-Regular.ttf'
         )
-        bot_text.SetForegroundColour('WHITE')
 
-        # setup panel
-        self.SetBackgroundColour('BLACK')
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(top_text, 0, wx.EXPAND, 10)
-        sizer.Add(mid_text, 0, wx.EXPAND, 10)
-        sizer.Add(bot_text, 0, wx.EXPAND, 10)
-        self.SetSizer(sizer)
-        self.Layout()
+        def resize_text(label, size):
+            label.padding = (Window.width * .03, Window.height * .01)
+            label.text_size = size
+            label.font_size = 0.71 * label.height
 
-        self.Bind(wx.EVT_KEY_DOWN, self.on_key)
+        self.top.bind(size=resize_text)
+        self.mid.bind(size=resize_text)
+        self.bot.bind(size=resize_text)
 
-    def on_key(self, event):
-        """Check for key press and exit if ESC is pressed."""
+        self.box.add_widget(self.top)
+        self.box.add_widget(self.mid)
+        self.box.add_widget(self.bot)
 
-        keycode = event.GetUnicodeKey()
-        if keycode == wx.WXK_ESCAPE or keycode == ord('Q'):
-            self.GetParent().Close()
-        else:
-            event.Skip()
+        Clock.schedule_interval(self.update_clocks, 0.1)
 
+        return self.box
 
-class DuermevelaFrame(wx.Frame):
+    def update_clocks(self, _):
+        self.tot_time = time.time() - self.started
+        self.bot.text = self.format_time(int(self.tot_time))
 
-    def __init__(self):
-        wx.Frame.__init__(self, None, title="duermevela")
-        DuermevelaPanel(self)
-        self.ShowFullScreen(True)
+    @staticmethod
+    def format_time(s: int) -> str:
+        return f"{s // 60:d}'{s % 60:02d}"
 
 
-if __name__ == "__main__":
-    app = wx.App(False)
-    frame = DuermevelaFrame()
-    app.MainLoop()
+if __name__ == '__main__':
+
+    Window.fullscreen = 'auto'
+    Window.show_cursor = False
+
+    DuermevelaApp().run()
