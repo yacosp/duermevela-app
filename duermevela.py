@@ -18,15 +18,15 @@ class DuermevelaPanel(wx.Panel):
         wx.Panel.__init__(self, parent)
 
         # setup fonts
-        wx.Font.AddPrivateFont(os.path.join(g_app_path, 'data/cardo/Cardo-Bold.ttf'))
-        wx.Font.AddPrivateFont(os.path.join(g_app_path, 'data/cardo/Cardo-Italic.ttf'))
+        # wx.Font.AddPrivateFont(os.path.join(g_app_path, 'data/cardo/Cardo-Bold.ttf'))
+        # wx.Font.AddPrivateFont(os.path.join(g_app_path, 'data/cardo/Cardo-Italic.ttf'))
 
         # setup static texts
         top_text = wx.StaticText(self, -1, "uno", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_LEFT)
         top_text.SetFont(
             wx.Font(pointSize=100,
-                    family=wx.FONTFAMILY_DEFAULT,
-                    style=wx.FONTSTYLE_NORMAL,
+                    family=wx.FONTFAMILY_ROMAN,
+                    style=wx.FONTSTYLE_ITALIC,
                     weight=wx.FONTWEIGHT_NORMAL,
                     faceName="Cardo Italic")
         )
@@ -35,9 +35,9 @@ class DuermevelaPanel(wx.Panel):
         mid_text = wx.StaticText(self, -1, "4:37", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTRE_HORIZONTAL)
         mid_text.SetFont(
             wx.Font(pointSize=170,
-                    family=wx.FONTFAMILY_DEFAULT,
+                    family=wx.FONTFAMILY_ROMAN,
                     style=wx.FONTSTYLE_NORMAL,
-                    weight=wx.FONTWEIGHT_NORMAL,
+                    weight=wx.FONTWEIGHT_BOLD,
                     faceName="Cardo Bold")
         )
         mid_text.SetForegroundColour('WHITE')
@@ -45,9 +45,9 @@ class DuermevelaPanel(wx.Panel):
         bot_text = wx.StaticText(self, -1, "22:31", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_RIGHT)
         bot_text.SetFont(
             wx.Font(pointSize=100,
-                    family=wx.FONTFAMILY_DEFAULT,
+                    family=wx.FONTFAMILY_ROMAN,
                     style=wx.FONTSTYLE_NORMAL,
-                    weight=wx.FONTWEIGHT_NORMAL,
+                    weight=wx.FONTWEIGHT_BOLD,
                     faceName="Cardo Bold")
         )
         bot_text.SetForegroundColour('WHITE')
