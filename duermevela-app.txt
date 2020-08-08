@@ -1,0 +1,92 @@
+--------------------------------------------------------------------------------
+duermevela-app
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+layout
+
+
+duermevela-app.txt  # no distrib
+README.md
+LICENSE
+requirements.txt
+duermevela/
+
+
+README.rst
+LICENSE
+setup.py
+requirements.txt
+sample/
+  __init__.py
+  core.py
+  helpers.py
+docs/
+  conf.py
+  index.rst
+tests/
+  test_basic.py
+  test_advanced.py
+
+
+
+duermevela.py       main app script, takes care of windows and such
+
+duermevela/         duermevela utils module
+  __init__.py
+  clock.py          clock methods
+  fieldrec.py       fieldrec methods
+
+data/
+  duermevela.json   main config: previa, movt times, textes, gamuts
+  fieldrec.json     fieldrec mecano list
+  soundlib/         fieldrec wavs, mono 4824 wavs
+
+
+--------------------------------------------------------------------------------
+duermevela.py
+
+create window
+  box sizer at full screen
+  three readonly labels (left, center, right aligned)
+    top: movt number (ie: "cuatro"), left aligned
+    mid: movt clock (ie: "3'42"), bigger, center
+    bot: general clock (ie: "27'14"), right aligned
+initialize app
+  setup "esc" event to exit
+  display:
+    mid: "duermevela"
+    bot: shows init messages
+  initialization:
+    parse duermevela.json
+      prepare movt, textes, ngamut dicts
+    parse notes.json
+      prepare pianotes dict
+    parse fieldrec.json
+      prepare fieldrec dict (88 % cant_registres, randprop)
+    
+    pre generate all processed wav loops
+      full wav: enveloped, stereo panned, processed
+    wait for click anywhere
+pre roll
+  display:
+    mid: countdown clock, ie: "-0'47".
+start event loop
+  
+
+--------------------------------------------------------------------------------
+fieldrec.py
+
+* needs to define sample start(s)
+* needs to define pan (pos? env?)
+* 1' en 48 24 stereo son 17 280 000 bytes, 17MB
+  * 6'31 ("v") son 112 320 000, 112MB... reasonable?
+* pan: per segment (env not possible)
+
+--------------------------------------------------------------------------------
+kivy:
+
+install:
+  python -m pip install --upgrade pip wheel setuptools
+  python -m pip install docutils pygments pypiwin32 kivy.deps.sdl2 kivy.deps.glew --extra-index-url https://kivy.org/downloads/packages/simple
+  pip install kivy[base] kivy_examples --pre --extra-index-url https://kivy.org/downloads/simple/

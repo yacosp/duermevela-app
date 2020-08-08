@@ -1,8 +1,5 @@
 """
 duermevela-app main script
-
-duermevela-app is a clock display and field recording player
-for "duermevela", a chamber suite by Santiago Peresón [yaco].
 """
 
 import kivy
@@ -83,9 +80,8 @@ class DuermevelaApp(App):
         return f"{s // 60:d}'{s % 60:02d}"
 
 
-if __name__ == '__main__':
+def main():
 
     Window.fullscreen = 'auto'
     Window.show_cursor = False
-
     DuermevelaApp().run()
