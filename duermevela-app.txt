@@ -5,43 +5,32 @@ duermevela-app
 --------------------------------------------------------------------------------
 layout
 
-
-duermevela-app.txt  # no distrib
+duermevela-app.txt             # no dist
 README.md
 LICENSE
 requirements.txt
 duermevela/
-
-
-README.rst
-LICENSE
-setup.py
-requirements.txt
-sample/
   __init__.py
-  core.py
-  helpers.py
-docs/
-  conf.py
-  index.rst
-tests/
-  test_basic.py
-  test_advanced.py
-
-
-
-duermevela.py       main app script, takes care of windows and such
-
-duermevela/         duermevela utils module
-  __init__.py
-  clock.py          clock methods
-  fieldrec.py       fieldrec methods
-
+  __main__.py
+  fieldrec.py
+  mecano.py
+  utils.py
 data/
-  duermevela.json   main config: previa, movt times, textes, gamuts
-  fieldrec.json     fieldrec mecano list
-  soundlib/         fieldrec wavs, mono 4824 wavs
-
+  cardo/
+    Cardo-Bold.ttf
+    Cardo-Italic.ttf
+    Cardo-Regular.ttf
+    SIL Open Font License.txt
+  soundlib/                    # downloaded from yaco.net
+    *.wav                      # all mono 48kHz 24bit
+  duermevela.json
+  mecano.json
+  textes.json
+tests/
+  test_fieldrec.py
+  test_main.py
+  test_mecano.py
+  test_utils.py
 
 --------------------------------------------------------------------------------
 duermevela.py

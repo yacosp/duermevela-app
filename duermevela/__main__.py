@@ -11,6 +11,9 @@ from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 
+from .utils import cage_time
+
+
 kivy.require('2.0.0')
 
 
@@ -73,11 +76,7 @@ class DuermevelaApp(App):
 
     def update_clocks(self, _):
         self.tot_time = time.time() - self.started
-        self.bot.text = self.format_time(int(self.tot_time))
-
-    @staticmethod
-    def format_time(s: int) -> str:
-        return f"{s // 60:d}'{s % 60:02d}"
+        self.bot.text = cage_time(int(self.tot_time))
 
 
 def main():

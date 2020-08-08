@@ -132,4 +132,4 @@ dmypy.json
 .idea/
 
 # duermevela
-#data/soundlib/
+data/soundlib/
