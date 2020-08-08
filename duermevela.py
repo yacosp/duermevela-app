@@ -1,7 +1,8 @@
-""" duermevela-app main script
+"""
+duermevela-app main script
 
 duermevela-app is a clock display and field recording player
-for "duermevela", a chamber suite by Santiago Peresón.
+for "duermevela", a chamber suite by Santiago Peresón [yaco].
 """
 import os
 import wx
