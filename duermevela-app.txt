@@ -5,8 +5,6 @@ duermevela-app
 --------------------------------------------------------------------------------
 states (chained)
   startup
-    load movts
-
   waiting
   playing
   ended
