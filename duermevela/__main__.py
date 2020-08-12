@@ -14,10 +14,17 @@ from kivy.uix.label import Label
 from .utils import cage_time
 
 
-kivy.require('2.0.0')
-
-
 class DuermevelaApp(App):
+
+    def build(self):
+
+        self.build_layout()
+        self.schedule_startup()
+
+        return self.box
+
+    def schedule_startup(self):
+        Clock.schedule_interval(self.update_clocks, 0.1)
 
     def __init__(self, **kwargs):
 
@@ -32,28 +39,28 @@ class DuermevelaApp(App):
         self.mid = None
         self.bot = None
 
-    def build(self):
+    def build_layout(self):
 
         self.box = BoxLayout(orientation='vertical')
 
         self.top = Label(
+            text="dos",
             size_hint_y=1,
             halign='left',
-            text="dos",
             font_name=r'data/cardo/Cardo-Italic.ttf'
         )
 
         self.mid = Label(
+            text="3'17",
             size_hint_y=2,
             halign='center',
-            text="3'17",
             font_name=r'data/cardo/Cardo-Bold.ttf'
         )
 
         self.bot = Label(
+            text="0'00",
             size_hint_y=1,
             halign='right',
-            text="0'00",
             font_name=r'data/cardo/Cardo-Regular.ttf'
         )
 
@@ -70,17 +77,15 @@ class DuermevelaApp(App):
         self.box.add_widget(self.mid)
         self.box.add_widget(self.bot)
 
-        Clock.schedule_interval(self.update_clocks, 0.1)
-
-        return self.box
-
     def update_clocks(self, _):
         self.tot_time = time.time() - self.started
         self.bot.text = cage_time(int(self.tot_time))
 
 
 def main():
+    """Setup kivy and start app."""
 
+    kivy.require('2.0.0')
     Window.fullscreen = 'auto'
     Window.show_cursor = False
     DuermevelaApp().run()
