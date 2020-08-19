@@ -4,14 +4,15 @@ duermevela-timer main script.
 
 import kivy
 
-from kivy.app import App
-from kivy.clock import Clock
-from kivy.core.window import Window
+from kivy.app           import App
+from kivy.clock         import Clock
+from kivy.core.window   import Window
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
+from kivy.uix.label     import Label
+from time               import monotonic
 
 from duermevela.mecano import Mecano
-from duermevela.utils import cgtime2secs, secs2cgtime
+from duermevela.utils  import cgtime2secs, secs2cgtime
 
 
 class DuermevelaApp(App):
@@ -19,12 +20,6 @@ class DuermevelaApp(App):
     def __init__(self, **kwargs):
 
         super().__init__(**kwargs)
-
-        self.movt_time = 0
-        self.total_time = 0
-
-        #self.keyboard = Window.request_keyboard(self.keyboard_closed, self)
-        #self.keyboard.bind(on_key_down=self.on_key)
 
     # states -----------------------------------------------------------------------------------------------------------
 
@@ -38,41 +33,49 @@ class DuermevelaApp(App):
 
     def startup_state(self, _):
         self.state = 'startup'
+        print(f"{monotonic():0.3f}: startup.")
 
-        self.bot.text = "armando mecano..."
-        self.mecano = Mecano()
-
-        self.movt_time = -1 * cgtime2secs(self.mecano.previa)
+        self.mecano     = Mecano()
+        self.movt       = None
+        self.movt_time  = -1 * cgtime2secs(self.mecano.previa)
+        self.movt_end   = 0
+        self.movt_queue = self.mecano.tocar[::-1]
+        self.total_time = 0
 
         Clock.schedule_once(self.waiting_state, 1.7)
 
     def waiting_state(self, _):
         self.state = 'waiting'
+        print(f"{monotonic():0.3f}: waiting.")
 
         self.bot.text = "toque para empezar"
 
-    def previa_state(self):
+    def previa_state(self, _):
         self.state = 'previa'
+        print(f"{monotonic():0.3f}: previa.")
 
         self.previa_layout()
-        self.previa_event = Clock.schedule_interval(self.previa_update, 1.0)
+        Clock.schedule_once(self.previa_update, 1.0)
 
     def playing_state(self, _):
         self.state = 'playing'
+        print(f"{monotonic():0.3f}: playing.")
 
-        self.top.text = "uno"   # should get from mecano
-        self.mid.text = "0'00"
+        self.movt      = self.movt_queue.pop()
+        self.movt_time = 0
+        self.movt_end  = self.mecano.movts[self.movt].dur_s
+
+        self.top.text  = self.mecano.movts[self.movt].label
+        self.mid.text  = "0'00"
         self.mid.color = (1, 1, 1, 1)
-        self.bot.text = "0'00"
+        self.bot.text  = "0'00"
 
-        # @todo: should start clocks
-
-        Clock.schedule_once(self.ending_state, 7.1)
+        Clock.schedule_once(self.playing_update, 1.0)
 
     def ending_state(self, _):
         self.state = 'ending'
+        print(f"{monotonic():0.3f}: ending.")
 
-        # @todo: should stop clocks
         self.ending_layout()
         self.fadeout_event = Clock.schedule_interval(self.ending_fadeout, 0.1)
 
@@ -81,10 +84,49 @@ class DuermevelaApp(App):
     def previa_update(self, _):
 
         self.movt_time += 1
-        self.mid.text = secs2cgtime(self.movt_time) + "\u00a0\u00a0"
-        if self.movt_time == -1:
-            self.previa_event.cancel()
+        if self.movt_time < -1:
+            self.mid.text = secs2cgtime(self.movt_time)
+            Clock.schedule_once(self.previa_update, 1.0)
+        else:
+            self.mid.text = ""
             Clock.schedule_once(self.playing_state, 1.0)
+
+    def playing_update(self, _):
+
+        # update total time
+        self.total_time += 1
+        self.bot.text = secs2cgtime(self.total_time)
+
+        # update movt time
+        self.movt_time += 1
+        carry_on = True
+        if self.movt_time <= self.movt_end - 1:
+            # inside movt
+            self.top.text = self.mecano.movts[self.movt].label
+            self.mid.text = secs2cgtime(self.movt_time)
+        elif self.movt_time == self.movt_end:
+            # last second is blank
+            self.top.text = ""
+            self.mid.text = ""
+        else:
+            if len(self.movt_queue) > 0:
+                # next movt
+                print(f"{monotonic():0.3f}: next movt.")
+                self.movt = self.movt_queue.pop()
+                self.movt_end = self.mecano.movts[self.movt].dur_s
+                self.movt_time = 0
+                self.top.text = self.mecano.movts[self.movt].label
+                self.mid.text = "0'00"
+            else:
+                # finished
+                self.bot.text = ""
+                carry_on = False
+
+        # schedule next update
+        if carry_on:
+            Clock.schedule_once(self.playing_update, 1.0)
+        else:
+            Clock.schedule_once(self.ending_state, 1.0)
 
     def ending_fadeout(self, _):
 
@@ -100,7 +142,8 @@ class DuermevelaApp(App):
         if args[2] == 41:  # esc
             self.stop()
         elif self.state == 'waiting':
-            self.previa_state()
+            self.bot.text = ""
+            Clock.schedule_once(self.previa_state, 0.1)
         return True
 
     # layouts ----------------------------------------------------------------------------------------------------------
@@ -149,18 +192,18 @@ class DuermevelaApp(App):
 
     def previa_layout(self):
 
-        self.top.text = ""
-        self.top.color = (1, 1, 1, 0.91)
+        self.top.text      = ""
+        self.top.color     = (1, 1, 1, 0.91)
         self.top.font_size = 0.71 * self.top.height
 
-        self.mid.text = secs2cgtime(self.movt_time) + "\u00a0\u00a0"
+        self.mid.text         = secs2cgtime(self.movt_time)
         self.mid.font_hinting = None
         self.mid.font_kerning = False
-        self.mid.color = (1, 1, 1, 0.71)
-        self.mid.font_size = 0.71 * self.mid.height
+        self.mid.color        = (1, 1, 1, 0.71)
+        self.mid.font_size    = 0.71 * self.mid.height
 
-        self.bot.text = ""
-        self.bot.color = (1, 1, 1, 0.91)
+        self.bot.text      = ""
+        self.bot.color     = (1, 1, 1, 0.71)
         self.bot.font_size = 0.71 * self.bot.height
         self.bot.font_name = "data/cardo/Cardo-Regular.ttf"
 
@@ -170,7 +213,7 @@ class DuermevelaApp(App):
 
         self.mid.font_name = "data/freefont/FreeSerif.ttf"
         self.mid.font_size = self.mid.height
-        self.mid.text = "\U0001d102"
+        self.mid.text      = "\U0001d102"
 
         self.bot.text = ""
 

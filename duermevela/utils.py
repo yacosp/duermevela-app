@@ -11,14 +11,14 @@ def cgtime2secs(cgtime):
 
 
 def secs2cgtime(secs):
-    """ format seconds into "m'ss" clock format, ie: 67 -> "1'07". """
+    """ format seconds into "m'ss" time string, ie: 67 -> "1'07". """
 
     secs = int(secs)
     return f"{'' if secs > 0 else '-'}{abs(secs) // 60:d}'{abs(secs) % 60:02d}"
 
 
 def note_number(note):
-    """ find the piano note number for a note (a0 = 1, c8 = 88). """
+    """ find the piano note number for a note, ie: a0 = 1, c8 = 88. """
 
     numbers = {'c': -8, 'c#': -7, 'db': -7, 'd': -6, 'd#': -5, 'eb': -5, 'e': -4, 'e#': -3, 'f': -3,
                'f#': -2, 'gb': -2, 'g': -1, 'g#': 0, 'ab': 0, 'a': 1, 'a#': 2, 'bb': 2, 'b': 3, 'cb': 3}
@@ -26,7 +26,7 @@ def note_number(note):
 
 
 def note_freq(note):
-    """ find the frequency of a note (a4 = 440). """
+    """ find the frequency of a note, ie: a4 = 440. """
 
     return 2 ** ((note_number(note) - 49)/12) * 440
 
