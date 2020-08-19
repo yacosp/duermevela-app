@@ -3,51 +3,42 @@ duermevela-app
 --------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
-collections.namedtuple(typename, field_names, *, rename=False, defaults=None,
-  module=None)
+ideas
 
->>> Point = namedtuple('Point', ['x', 'y'])
->>> p = Point(11, y=22)     # instantiate with positional or keyword arguments
->>> p[0] + p[1]             # indexable like the plain tuple (11, 22)
-33
->>> x, y = p                # unpack like a regular tuple
->>> x, y
-(11, 22)
->>> p.x + p.y               # fields also accessible by name
-33
->>> p                       # readable __repr__ with a name=value style
-Point(x=11, y=22)
->>> p._replace(x=33)        # replace values
-Point(x=33, y=22)
->>> p._fields               # view the field names
-('x', 'y')
->>> d = {'x': 11, 'y': 22}  # convert a dictionary to a named tuple
->>> Point(**d)
-Point(x=11, y=22)
->>> class Point(namedtuple('Point', ['x', 'y'])):
-...     __slots__ = ()
-...     @property
-...     def hypot(self):
-...         return (self.x ** 2 + self.y ** 2) ** 0.5
->>> p
-Point(x=11, y=22, hypot=24.596747752497688)
+prefiero que "tome decisiones" en el momento
+  no prearmado.
 
---------------------------------------------------------------------------------
-arrow
+todo opcional
+  1 participación por movt
+  probabilidad: cant_atisbos / 9
+    9 = max atisbos en "r"
 
->>> arrow.get("4'33", "m'ss")
-<Arrow [0001-01-01T00:04:33+00:00]>
+sample start time is important
 
->>> ct = arrow.get("4'33", "m'ss")
->>> ct.time()
-datetime.time(0, 4, 33)
+adaptar modos
+  dur, mom y dyn según modos)
+  nl (nota larga)
+    xfade lup, sample start: (1st_letter_of_text / 27) * num_samples
+  al (acorde largo)
+    = nl, tres fieldrecs juntos
+  bc (bigchord)
+    = nl
+  bl (buquelup)
+    clicky lup, emph. transitions (adsr-like), 1 note per silaba
+    sstart: (1st_letter / 27) * (num_samples / 2)
+  pu (pulso)
+    = bl, bandpass @ note freq
 
->>> ct.shift(seconds=+11)
-<Arrow [0001-01-01T00:04:44+00:00]>
+xfades are already done manually, no need to process live
 
->>> ct.format("m'ss")
-"4'33"
-
+note gamuts
+  i have ~22 registres right now
+  piano_note_num % cant_registres
+    ie: d1 (piano note  #5 if a0 = 0) = registre  5
+        c3 (piano note #39 if a0 = 0) = registre 18
+  randomize registres pre assignment (each time player is run)
+    weighted random based on "like" number in file name
+      ie: 20160326-duo-3 3 likes, 20160801-04-s-1 1 like
 
 --------------------------------------------------------------------------------
 layout
@@ -80,37 +71,6 @@ tests/
   test_utils.py
 
 --------------------------------------------------------------------------------
-duermevela.py
-
-create window
-  box sizer at full screen
-  three readonly labels (left, center, right aligned)
-    top: movt number (ie: "cuatro"), left aligned
-    mid: movt clock (ie: "3'42"), bigger, center
-    bot: general clock (ie: "27'14"), right aligned
-initialize app
-  setup "esc" event to exit
-  display:
-    mid: "duermevela"
-    bot: shows init messages
-  initialization:
-    parse duermevela.json
-      prepare movt, textes, ngamut dicts
-    parse notes.json
-      prepare pianotes dict
-    parse fieldrec.json
-      prepare fieldrec dict (88 % cant_registres, randprop)
-    
-    pre generate all processed wav loops
-      full wav: enveloped, stereo panned, processed
-    wait for click anywhere
-pre roll
-  display:
-    mid: countdown clock, ie: "-0'47".
-start event loop
-  
-
---------------------------------------------------------------------------------
 fieldrec.py
 
 * needs to define sample start(s)
@@ -118,6 +78,52 @@ fieldrec.py
 * 1' en 48 24 stereo son 17 280 000 bytes, 17MB
   * 6'31 ("v") son 112 320 000, 112MB... reasonable?
 * pan: per segment (env not possible)
+
+--------------------------------------------------------------------------------
+collections.namedtuple(typename, field_names, *, rename=False, defaults=None,
+  module=None)
+
+>>> Point = namedtuple('Point', ['x', 'y'])
+>>> p = Point(11, y=22)     # instantiate with positional or keyword arguments
+>>> p[0] + p[1]             # indexable like the plain tuple (11, 22)
+33
+>>> x, y = p                # unpack like a regular tuple
+>>> x, y
+(11, 22)
+>>> p.x + p.y               # fields also accessible by name
+33
+>>> p                       # readable __repr__ with a name=value style
+Point(x=11, y=22)
+>>> p._replace(x=33)        # replace values
+Point(x=33, y=22)
+>>> p._fields               # view the field names
+('x', 'y')
+>>> d = {'x': 11, 'y': 22}  # convert a dictionary to a named tuple
+>>> Point(**d)
+Point(x=11, y=22)
+>>> class Point(namedtuple('Point', ['x', 'y'])):
+...     __slots__ = ()
+...     @property
+...     def hypot(self):
+...         return (self.x ** 2 + self.y ** 2) ** 0.5
+>>> p.hypot
+24.596747752497688
+
+--------------------------------------------------------------------------------
+arrow
+
+>>> arrow.get("4'33", "m'ss")
+<Arrow [0001-01-01T00:04:33+00:00]>
+
+>>> ct = arrow.get("4'33", "m'ss")
+>>> ct.time()
+datetime.time(0, 4, 33)
+
+>>> ct.shift(seconds=+11)
+<Arrow [0001-01-01T00:04:44+00:00]>
+
+>>> ct.format("m'ss")
+"4'33"
 
 --------------------------------------------------------------------------------
 kivy:

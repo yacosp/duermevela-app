@@ -41,9 +41,10 @@ class DuermevelaApp(App):
 
         self.bot.text = "armando mecano..."
         self.mecano = Mecano()
+
         self.movt_time = -1 * cgtime2secs(self.mecano.previa)
 
-        Clock.schedule_once(self.waiting_state, 3.1)
+        Clock.schedule_once(self.waiting_state, 1.7)
 
     def waiting_state(self, _):
         self.state = 'waiting'
@@ -87,7 +88,6 @@ class DuermevelaApp(App):
 
     def ending_fadeout(self, _):
 
-        # @todo: should fade out sound
         self.mid.color = (1, 1, 1, self.mid.color[3] - 0.1/17)
         if self.mid.color[3] < 0.1/17:
             self.mid.color = (0, 0, 0, 0)

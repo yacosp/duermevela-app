@@ -1,259 +1,259 @@
 [
   {
     "mom":   [79, "v", "1'51", "2'59", "6'31"],
-    "txt":   ["satie", "27", 2],
+    "texte": ["satie", "27", 2],
     "modos": ["nl", "al", "pu", "bc"],
     "ng":    ["landscape", "8-15", 8],
     "dyn":   ["pppp", "<>"]
   },
   {
     "mom":   [25, "u", "5'29", "6'11", "6'14"],
-    "txt":   ["sumergirme", "4", 9],
+    "texte": ["sumergirme", "4", 9],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["pconcerto", "12-13", 2],
     "dyn":   ["pp", "-<-"]
   },
   {
     "mom":   [39, "r", "1'32", "2'28", "5'23"],
-    "txt":   ["caminata", "5", 5],
+    "texte": ["caminata", "5", 5],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["faded", "5-15", 11],
     "dyn":   ["p", "->-"]
   },
   {
     "mom":   [35, "r", "0'12", "1'17", "5'23"],
-    "txt":   ["caminata", "5", 5],
+    "texte": ["caminata", "5", 5],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["faded", "1-11", 11],
     "dyn":   ["p", "->-"]
   },
   {
     "mom":   [93, "e3", "0'03", "0'20", "1'25"],
-    "txt":   ["hable", "8", 1],
+    "texte": ["hable", "8", 1],
     "modos": ["nl", "al", "pu", "bc"],
     "ng":    ["railroad", "7-18", 12],
     "dyn":   ["p", "-<-"]
   },
   {
     "mom":   [91, "e3", "0'00", "0'03", "1'25"],
-    "txt":   ["hable", "8-9", 9],
+    "texte": ["hable", "8-9", 9],
     "modos": ["nl", "al", "pu", "bl", "bc"],
     "ng":    ["railroad", "3-9", 7],
     "dyn":   ["pp", "<>"]
   },
   {
     "mom":   [79, "v", "1'51", "2'59", "6'31"],
-    "txt":   ["satie", "27", 2],
+    "texte": ["satie", "27", 2],
     "modos": ["nl", "al", "pu", "bc"],
     "ng":    ["landscape", "5-15", 11],
     "dyn":   ["p", "-<-"]
   },
   {
     "mom":   [91, "e3", "0'00", "0'03", "1'25"],
-    "txt":   ["hable", "8", 1],
+    "texte": ["hable", "8", 1],
     "modos": ["nl", "al", "pu", "bc"],
     "ng":    ["railroad", "3-9", 7],
     "dyn":   ["pp", "<>"]
   },
   {
     "mom":   [79, "v", "1'51", "2'59", "6'31"],
-    "txt":   ["satie", "28", 1],
+    "texte": ["satie", "28", 1],
     "modos": ["nl", "al", "pu", "bc"],
     "ng":    ["landscape", "15-17", 3],
     "dyn":   ["pppp", "->-"]
   },
   {
     "mom":   [64, "e2", "0'00", "0'03", "1'25"],
-    "txt":   ["causas", "5", 3],
+    "texte": ["causas", "5", 3],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["tedeum", "1-9", 9],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [23, "u", "3'53", "5'12", "6'14"],
-    "txt":   ["sumergirme", "3-4", 11],
+    "texte": ["sumergirme", "3-4", 11],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["pconcerto", "1-12", 12],
     "dyn":   ["p", "->-"]
   },
   {
     "mom":   [64, "e2", "0'00", "0'03", "1'25"],
-    "txt":   ["causas", "5", 3],
+    "texte": ["causas", "5", 3],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["tedeum", "9-10", 2],
     "dyn":   ["pp", "<>"]
   },
   {
     "mom":   [51, "m", "0'00", "0'08", "3'41"],
-    "txt":   ["realizaciones", "5", 2],
+    "texte": ["realizaciones", "5", 2],
     "modos": ["nl", "al", "pu"],
     "ng":    ["dawn", "3-11", 9],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [57, "m", "1'41", "2'08", "3'41"],
-    "txt":   ["realizaciones", "6", 8],
+    "texte": ["realizaciones", "6", 8],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["dawn", "7-13", 7],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [44, "r", "3'22", "4'30", "5'23"],
-    "txt":   ["caminata", "6", 2],
+    "texte": ["caminata", "6", 2],
     "modos": ["nl", "al", "pu"],
     "ng":    ["faded", "2-9", 8],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [67, "e2", "0'49", "0'53", "1'25"],
-    "txt":   ["causas", "5-6", 6],
+    "texte": ["causas", "5-6", 6],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["tedeum", "7-13", 7],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [33, "r", "0'12", "1'17", "5'23"],
-    "txt":   ["caminata", "4", 3],
+    "texte": ["caminata", "4", 3],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["faded", "7-14", 8],
     "dyn":   ["p", "-<-"]
   },
   {
     "mom":   [64, "e2", "0'00", "0'03", "1'25"],
-    "txt":   ["causas", "5", 3],
+    "texte": ["causas", "5", 3],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["tedeum", "1-11", 11],
     "dyn":   ["p", "->-"]
   },
   {
     "mom":   [91, "e3", "0'00", "0'03", "1'25"],
-    "txt":   ["hable", "8", 1],
+    "texte": ["hable", "8", 1],
     "modos": ["nl", "al", "pu", "bc"],
     "ng":    ["railroad", "3-10", 8],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [91, "e3", "0'00", "0'03", "1'25"],
-    "txt":   ["hable", "8-9", 9],
+    "texte": ["hable", "8-9", 9],
     "modos": ["nl", "al", "pu", "bl", "bc"],
     "ng":    ["railroad", "12-16", 5],
     "dyn":   ["pp", "->-"]
   },
   {
     "mom":   [102, "l", "0'58", "1'34", "3'24"],
-    "txt":   ["launa", "11", 1],
+    "texte": ["launa", "11", 1],
     "modos": ["nl", "al", "pu", "bc"],
     "ng":    ["gnossienne", "7-12", 6],
     "dyn":   ["pppp", "<>"]
   },
   {
     "mom":   [1, "d", "0'00", "0'02", "1'08"],
-    "txt":   ["caricias", "1-3", 7],
+    "texte": ["caricias", "1-3", 7],
     "modos": ["nl", "al", "pu", "bl", "bc"],
     "ng":    ["adream", "1-4", 4],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [52, "m", "0'08", "0'53", "3'41"],
-    "txt":   ["realizaciones", "5-6", 10],
+    "texte": ["realizaciones", "5-6", 10],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["dawn", "6-11", 6],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [109, "a", "0'00", "0'01", "0'17"],
-    "txt":   ["hatiempo", "1", 2],
+    "texte": ["hatiempo", "1", 2],
     "modos": ["nl", "al", "pu"],
     "ng":    ["thursday", "3-4", 2],
     "dyn":   ["pp", "<>"]
   },
   {
     "mom":   [90, "v", "5'44", "6'27", "6'31"],
-    "txt":   ["satie", "31-32", 6],
+    "texte": ["satie", "31-32", 6],
     "modos": ["nl", "al", "pu", "bl", "bc"],
     "ng":    ["landscape", "9-15", 7],
     "dyn":   ["ppp", "<>"]
   },
   {
     "mom":   [55, "m", "1'03", "1'41", "3'41"],
-    "txt":   ["realizaciones", "6", 8],
+    "texte": ["realizaciones", "6", 8],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["dawn", "1-11", 11],
     "dyn":   ["p", "->-"]
   },
   {
     "mom":   [45, "r", "3'22", "4'30", "5'23"],
-    "txt":   ["caminata", "6-7", 7],
+    "texte": ["caminata", "6-7", 7],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["faded", "7-13", 7],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [39, "r", "1'32", "2'28", "5'23"],
-    "txt":   ["caminata", "5", 5],
+    "texte": ["caminata", "5", 5],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["faded", "11-18", 8],
     "dyn":   ["pppp", "-<-"]
   },
   {
     "mom":   [37, "r", "1'17", "1'32", "5'23"],
-    "txt":   ["caminata", "5", 5],
+    "texte": ["caminata", "5", 5],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["faded", "1-15", 15],
     "dyn":   ["p", "-<-"]
   },
   {
     "mom":   [38, "r", "1'32", "2'28", "5'23"],
-    "txt":   ["caminata", "5", 5],
+    "texte": ["caminata", "5", 5],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["faded", "7-11", 5],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [17, "u", "2'52", "3'36", "6'14"],
-    "txt":   ["sumergirme", "2", 6],
+    "texte": ["sumergirme", "2", 6],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["pconcerto", "1-14", 14],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [33, "r", "0'12", "1'17", "5'23"],
-    "txt":   ["caminata", "4", 3],
+    "texte": ["caminata", "4", 3],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["faded", "1-8", 8],
     "dyn":   ["p", "<>"]
   },
   {
     "mom":   [28, "e1", "0'03", "0'20", "1'25"],
-    "txt":   ["libera", "2-3", 7],
+    "texte": ["libera", "2-3", 7],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["summers", "3-9", 7],
     "dyn":   ["p", "-<-"]
   },
   {
     "mom":   [14, "u", "1'46", "2'52", "6'14"],
-    "txt":   ["sumergirme", "2", 6],
+    "texte": ["sumergirme", "2", 6],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["pconcerto", "1-17", 17],
     "dyn":   ["p", "--<"]
   },
   {
     "mom":   [71, "v", "0'14", "1'33", "6'31"],
-    "txt":   ["satie", "25", 4],
+    "texte": ["satie", "25", 4],
     "modos": ["nl", "al", "pu", "bl", "bc"],
     "ng":    ["landscape", "9-14", 6],
     "dyn":   ["pppp", "<>"]
   },
   {
     "mom":   [23, "u", "3'53", "5'12", "6'14"],
-    "txt":   ["sumergirme", "3", 2],
+    "texte": ["sumergirme", "3", 2],
     "modos": ["nl", "al", "pu"],
     "ng":    ["pconcerto", "9-23", 15],
     "dyn":   ["p", "-<-"]
   },
   {
     "mom":   [63, "e2", "0'00", "0'03", "1'25"],
-    "txt":   ["causas", "5", 3],
+    "texte": ["causas", "5", 3],
     "modos": ["nl", "al", "pu", "bl"],
     "ng":    ["tedeum", "1-13", 13],
     "dyn":   ["p", "<>"]
