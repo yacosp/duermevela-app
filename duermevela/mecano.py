@@ -7,7 +7,7 @@ import random
 
 from dataclasses import dataclass
 
-from .utils import alnum_only, cgtime2secs, letter_sum, note_freq, note_number
+from duermevela.utils import alnum_only, cgtime2secs, letter_sum, note_freq, note_number
 
 
 class Mecano:

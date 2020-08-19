@@ -1,5 +1,5 @@
 """
-duermevela-app main script
+duermevela-timer main script.
 """
 
 import kivy
