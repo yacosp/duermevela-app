@@ -20,7 +20,7 @@ pickleshare==0.7.5
 Pillow==7.2.0
 prompt-toolkit==3.0.6
 pydub==0.24.1
-Pygments==2.6.1
+Pygments==2.7.4
 pypiwin32==223
 python-dateutil==2.8.1
 pywin32==228
