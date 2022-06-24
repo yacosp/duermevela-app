@@ -15,6 +15,9 @@ from duermevela.mecano import Mecano
 from duermevela.utils  import cgtime2secs, secs2cgtime
 
 
+__version__ = '1.0.0'
+
+
 class DuermevelaApp(App):
 
     def __init__(self, **kwargs):
@@ -220,6 +223,7 @@ class DuermevelaApp(App):
 
 def main():
 
+    print(f"\nduermevela-timer {__version__}\n")
     kivy.require('2.0.0')
     Window.fullscreen = 'auto'
     Window.show_cursor = False
